@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border-left: 1px solid #000;
+        border-top: 1px solid #000;
+    }
+
+    table tr th {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+    }
+
+    table tr td {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <table class="table" id="mainTable">
+        <colgroup>
+            <col width="12%">
+            <col width="33%">
+            <col width="12%">
+            <col>
+            <col width="17%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th style="width: 45.2344px;"><input type="checkbox" name="" id="allCheck" autocomplete="off"></th>
+                <th style="width: 122.656px;">의뢰기관명</th>
+                <th style="width: 45.2344px;">검사</th>
+                <th>환자번호</th>
+                <th style="width: 17%;">요청시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td><input type="checkbox" name="waitingListCheck" id="" data-rid="26371"></td>
+                <td>test002 의뢰병원</td>
+                <td>DX</td>
+                <td>DX_010</td>
+                <td>3:46</td>
+            </tr> -->
+        </tbody>
+    </table>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        //비동기 데이터
+        getList();
+        function getList() {
+            setTimeout(function () {
+                const html = `<tr>
+                                <td><input type="checkbox" name="waitingListCheck" id="" data-rid="26371"></td>
+                                <td>test002 의뢰병원</td>
+                                <td>DX</td>
+                                <td>DX_010</td>
+                                <td>3:46</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="waitingListCheck" id="" data-rid="26371"></td>
+                                <td>test002 의뢰병원</td>
+                                <td>DX</td>
+                                <td>DX_010</td>
+                                <td>3:46</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="waitingListCheck" id="" data-rid="26371"></td>
+                                <td>test002 의뢰병원</td>
+                                <td>DX</td>
+                                <td>DX_010</td>
+                                <td>3:46</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="waitingListCheck" id="" data-rid="26371"></td>
+                                <td>test002 의뢰병원</td>
+                                <td>DX</td>
+                                <td>DX_010</td>
+                                <td>3:46</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="waitingListCheck" id="" data-rid="26371"></td>
+                                <td>test002 의뢰병원</td>
+                                <td>DX</td>
+                                <td>DX_010</td>
+                                <td>3:46</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="waitingListCheck" id="" data-rid="26371"></td>
+                                <td>test002 의뢰병원</td>
+                                <td>DX</td>
+                                <td>DX_010</td>
+                                <td>3:46</td>
+                            </tr>`
+                document.querySelector('#mainTable tbody').innerHTML = html;
+            }, 1000);
+        }
+
+
+
+        //checkbox
+        $('#allCheck').on('change', function () {
+            const tableCheckbox = $(this).closest('table').find('tbody input[type="checkbox"]');
+            if ($(this).is(':checked')) {
+                tableCheckbox.prop('checked', true);
+            } else {
+                tableCheckbox.prop('checked', false);
+            }
+        });
+        $('#mainTable').on('click', 'tr td:not(:first-child)', function () {
+            const $tdCheck = $(this).closest('tr').find('td input[type="checkbox"]');
+            if ($tdCheck.is(':checked')) {
+                $tdCheck.prop('checked', false).trigger('change');
+            } else {
+                $tdCheck.prop('checked', true).trigger('change');
+            }
+        });
+        $('#mainTable').on('change', 'tr td', function () {
+            const allLength = $('#mainTable tr td input[type="checkbox"]').length;
+            const checkedLength = $('#mainTable tr td input[type="checkbox"]:checked').length;
+            if (allLength == checkedLength) {
+                $('#allCheck').prop('checked', true);
+            } else {
+                $('#allCheck').prop('checked', false);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
