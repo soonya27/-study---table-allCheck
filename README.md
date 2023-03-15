@@ -1,7 +1,6 @@
-# -study---table-allCheck--vanillaJS-jquery
-
 ## table allCheck VanilaJs & Jquery study
 
+### [githubpage](https://soonya27.github.io/-study---table-allCheck--vanillaJS-jquery/)
 
 ### JQUERY
 ```javascript
